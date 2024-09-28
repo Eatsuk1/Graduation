@@ -3,6 +3,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.vs
+appsettings.Development.json
 
 # Build results
 [Dd]ebug/
