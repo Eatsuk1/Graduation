@@ -1,0 +1,50 @@
+﻿@page "/"
+@inject IDialogService DialogService
+
+@* <PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+ *@
+
+<MudPaper Height="800px" Elevation="0" style="align-content:center">
+    <MudStack Spacing="10" style="align-items:center">
+        <MudButton Variant="Variant.Filled" Style="background-color: yellowgreen; color: white; width: 200px; height: 60px;" OnClick="(e) => OpenDialogAsync(buttonNum1)">
+            Card 1
+        </MudButton>
+        <MudButton Variant="Variant.Filled" Style="background-color: red; color: white; width: 200px; height: 60px;" OnClick="(e) => OpenDialogAsync(buttonNum2)">
+            Card 2
+        </MudButton>
+        <MudButton Variant="Variant.Filled" Style="background-color: deepskyblue; color: white; width: 200px; height: 60px;" OnClick="(e) => OpenDialogAsync(buttonNum3)">
+            Card 3
+        </MudButton>
+    </MudStack>
+</MudPaper>
+
+@code
+{
+    string buttonNum1 = "1";
+    string buttonNum2 = "2";
+    string buttonNum3 = "3";
+
+    private Task OpenDialogAsync(string buttonNum)
+    {
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+
+        if(buttonNum == "1")
+        {
+            return DialogService.ShowAsync<Dialog1>("Tada!", options);
+        }
+        else if(buttonNum == "2")
+        {
+            return DialogService.ShowAsync<Dialog2>("Tada!", options);
+        }
+        else
+        {
+            return DialogService.ShowAsync<Dialog3>("Tada!", options);
+        }
+    }
+}
